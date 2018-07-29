@@ -79,3 +79,58 @@ const filter = (...args) =>{
 
 console.log(filter(1,2,3)); //=> 1
 //___________________________________________________________________________________---
+//Destructuring
+//Array Destructuring
+const numbers = [1,2,3];
+[num1,,num3] = [numbers];
+console.log(num1,num2); //=> 1, 3
+
+//Object Destructuring
+/*
+{name} = {name:'İbrahim',age:45}
+console.log(name); //İbrahim
+console.log(age); //undefined
+*/
+
+//______________________________________________________________________________________
+//Reference and Primitive Type Refresher
+
+const person = {
+    name = "İbrahim"
+};
+
+const person2 = person;
+person.name = "Ahmet";
+console.log(person2.name); //Ahmet
+
+//Javascriptte önemli olaylardan biride obje ve dizilerin kopyalanmasıdır. Yukarıdaki şekilde bir atama
+//yaparsak person2 nesnesi person nesnesinin adresini tutar. Yani person her değiştiğinde person2 de değişir.
+//Eğer sadece içerisindeki veriyi kopyalamak istiyorsak aşağıdaki şekildeki gib bir yöntem izlemeliyiz. Yeni
+//bir obje parentezi açıp spread ile verileri kopyalamalıyız.
+
+const person3 = {
+    ...person
+}
+
+person.name = "Ziya";
+console.log(person3.name); //=> İbrahim
+
+//____________________________________________________________________________________
+//Refreshing Array Functions
+
+const numbers = [1,2,3]
+
+//map() metodu bize yeni bir array döner
+const doubleNumArray = numbers.map((num)=>{
+    return num*2;
+});
+
+console.log(numbers);//[1,2,3]
+console.log(doubleNumArray);//[2,4,6]
+
+//_______________________________________________________________________________________-
+
+//References 
+//=>https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+
