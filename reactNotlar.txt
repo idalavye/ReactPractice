@@ -1,0 +1,16 @@
+
+React uygulamalarý browser üzerinde çalýþýr. Server üzerinde deðil.
+React kütüphanesi compenentler sunar. React Dom ise bu componentleri render etmemizi saðlar.
+**React metotlarýnýn içinde class ifadesini kullanamayýz. Çünkü class javascripte özel bir tagdýr.Bunun yerine className kullanabiliriz.
+
+Reactýn temel mantýðý ,bir tane Html Code yazýp, bunu tekrar tekrar kullanabilmek.
+
+EcmaScript ile javascripte var tagý yerine 2 yeni tag gelmiþtir. let ve const, let ile tanýmladýðýmýz deðiþkenler sonradan deðiþtirilebilen,
+const ile tanýmladýðýmýz deðiþkenler sonradan deðiþtirilemeyen veriable lardýr.
+
+Arrow Functions: 
+Normal Fonksiyon; function myFunc(){..... }
+Arrow Function;const myFunc = () => { ... } 
+Arrow function ile javascriptin en büyük sorunlarýndan biri olan this anahtar kelimesi ile yaþanan sorunlar giderilmiþtir.
+
+Ecma Script 7 le birlikte classlarýn içine constructor tanýmý yapma zorunluluðu kaldýrýlmýþtýr.
