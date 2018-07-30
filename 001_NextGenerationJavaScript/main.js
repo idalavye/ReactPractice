@@ -5,7 +5,7 @@ const myFunc2 = number => numberx2;
 const myFunc3 = (name,age) => {
     console.log("Hi")
 }
-
+//
 //_________________________________________________________________________________________________________
 //Classes
 class Human{
