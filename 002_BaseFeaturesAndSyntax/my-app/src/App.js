@@ -10,7 +10,8 @@ class App extends Component {
       { name: 'Manu', age: 29 },
       { name: 'Stephanie', age: 26 }
     ],
-    otherState: 'some other value'
+    otherState: 'some other value',
+    showPersons:false
   }
 
   switchNameHandler = (newName) => {
@@ -35,6 +36,10 @@ class App extends Component {
     })
   }
 
+  togglePersonHandler = () =>{
+
+  }
+
   //() => this.switchNameHandler('İbrahim') kullanmak yerine bind metodunu kullanmamız önerilir.
 
   render() {
@@ -50,7 +55,7 @@ class App extends Component {
       <div className="App">
         <h1>Hi,I'm React App</h1>
         <p>This is really working</p>
-        <button style={style} onClick={() => this.switchNameHandler('İbrahim')}>Switch Name</button>
+        <button style={style} onClick={() => togglePersonHandler()}>Switch Name</button>
         <Person 
         name={this.state.persons[0].name}
         age = {this.state.persons[0].age} 
