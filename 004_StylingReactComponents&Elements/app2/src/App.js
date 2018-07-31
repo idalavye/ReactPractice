@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
-import Person from './Person/Person'
+import classes from './App.css';
+import Person from './Person/Person';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
   state = {
@@ -56,59 +57,44 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor:'green',
-      color:'white',
-      font:'inherit',
-      border:"1px solid blue",
-      padding:'8px',
-      cursor:'pointer',
-      ':hover':{
-        backgroundColor:'lightgreen',
-        color:'black'
-      }
-    };
-
     let person = null;
+    let btnClass = '';
 
+  
     if(this.state.showPersons){
       person = (
         <div>
           {this.state.persons.map((person,index) => {
-            return <Person 
-                    name={person.name} 
-                    age={person.age}
-                    click={()=>this.deletePersonHandler(index)}
-                    key={person.id}
-                    changed={(event) => this.nameChangedHandler(event,person.id)}
-                    />
+            return <ErrorBoundary key={person.id}>
+                      <Person 
+                      name={person.name} 
+                      age={person.age}
+                      click={()=>this.deletePersonHandler(index)}
+                      key={person.id}
+                      changed={(event) => this.nameChangedHandler(event,person.id)}
+                      />
+                    </ErrorBoundary>
+                    
           })}
         </div>
       );
-      style.backgroundColor = "red";
 
-      //radium kütüphanesin özelliklerinden biri bizim pseude selectors kullanabilmemizi sağlamasıdır.
-      style[':hover'] = {
-        backgroundColor:'salmon',
-        color:'black'
-      };
+      btnClass = classes.Red;
     }
 
-    //let classes = ['red','bold'].join(' ');
-
-    const classes = [];
+    const assignedClasses = [];
     if(this.state.persons.length <=2){
-      classes.push('red'); //['red']
+      assignedClasses.push(classes.red); //['red']
     }
     if(this.state.persons.length <=1){
-      classes.push('bold'); //['red','bold']
+      assignedClasses.push(classes.bold); //['red','bold']
     }
    
     return (    
-      <div className="App">
+      <div className={classes.App}>
         <h1>Hi,I'm React App</h1>
-        <p className={classes.join(' ')}>This is really working</p>
-        <button style={style} onClick={() => this.togglePersonHandler()}>Toggle Name</button>
+        <p className={assignedClasses.join(' ')}>This is really working</p>
+        <button className={btnClass} onClick={() => this.togglePersonHandler()}>Toggle Name</button>
         
         {person}
         
@@ -121,4 +107,11 @@ export default App;
 
 //
 //npm install --save radium
+//npm run eject => geri dönüşü yoktur.
 //  
+
+/**
+ * Developer modda ErrorBoundary sayfasını göremeyiz. Uygulamamızı bir sunucuya
+ * eklediğimiz zaman hata sayfasını gösterecektir. 
+ *  
+ */

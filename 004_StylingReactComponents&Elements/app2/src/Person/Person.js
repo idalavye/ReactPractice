@@ -1,19 +1,16 @@
 import React from 'react';
-import './Person.css';
-import Radium from 'radium'
+import classes from './Person.css';
+
 
 //arrow functionlarda method tanımlayamadığmız için bir üst sınıfa probs lar ile ulaşırız
 const person = (probs) =>{
-   
-    //Sayfa enli olarak 500px den büyükse genişliğini 450px de sabit tut(Media Query)
-    const style = {
-      '@media (min-width:500px)':{
-          width:'450px'
-      } 
-    };
+    const rnd = Math.random();
 
+    if(rnd > 0.7){
+        throw new Error('Something went wrong');
+    }
     return(
-        <div className="Person" style={style}>
+        <div className={classes.Person}>
             <p onClick={probs.click}>Hi, I am {probs.name} and I am {probs.age} years old</p>
             <p>{probs.children}</p>
             <input type="text" onChange={probs.changed}/>
@@ -21,4 +18,10 @@ const person = (probs) =>{
     )
 };
 
-export default Radium(person);
+export default person;
+
+/**
+ * classes kullandığımız zaman css nesnelerine javascript objesi kullanarak ulaşabilmiş oluruz. Her bir css objesini 
+ * unique bir şekilde html içerisine gömebilmemizi sağlar. 
+ */
+
