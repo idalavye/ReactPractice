@@ -14,3 +14,6 @@ Arrow Function;const myFunc = () => { ... }
 Arrow function ile javascriptin en büyük sorunlarýndan biri olan this anahtar kelimesi ile yaþanan sorunlar giderilmiþtir.
 
 Ecma Script 7 le birlikte classlarýn içine constructor tanýmý yapma zorunluluðu kaldýrýlmýþtýr.
+
+componentDidMount metodunun içerisinde setState metodunu kesinlikle çaðýrmamalýyýz. Çünkü UI'i tekrar render eder ve verilerimizi kaybetmiþ oluruz.
+Burada servera baðlanma verileri fetch etme gibi iþlemleri gerçekleþtirmeliyiz.
