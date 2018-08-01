@@ -19,7 +19,20 @@ export default person;
 */
 
 class Person extends Component {
-    render() {
+    constructor(props){
+        super(props);
+        console.log('[Person.js] Inside Constructors');
+    }
+    
+    componentWillMount(){
+        console.log('[Person.js] Inside componentWillMounth');
+    }
+    
+    componentDidMount(){
+        console.log('[Person.js] Inside componentDidMounth')
+    }
+    render(){
+        console.log(['[Person.js] Inside render'])
         return (
             <div className={classes.Person}>
                 <p onClick={this.props.click}>Hi, I am {this.props.name} and I am {this.props.age} years old</p>
