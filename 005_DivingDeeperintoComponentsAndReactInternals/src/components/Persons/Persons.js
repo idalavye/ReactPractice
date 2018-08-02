@@ -29,6 +29,7 @@ class Persons extends Component{
     constructor(props){
         super(props);
         console.log('[Persons.js] Inside Constructors');
+        this.lastPersonRef = React.createRef();
     }
     
     componentWillMount(){
@@ -37,6 +38,7 @@ class Persons extends Component{
     
     componentDidMount(){
         console.log('[Persons.js] Inside componentDidMounth');
+        this.lastPersonRef.current.focus();
     }
 
     componentWillReceiveProps(nextProps){
@@ -68,17 +70,20 @@ class Persons extends Component{
     componentDidUpdate(){
         //Bu noktada nextProps and nextStates currentProps and currentStates e dönüşür.
         console.log('[Update Persons.js] Insided componentDidUpdate');
+        
     }
 
     render(){
         console.log(['[Persons.js] Inside render'])
         return this.props.persons.map((person, index) => {
             return <Person
-                name={person.name}
-                age={person.age}
-                click={() => this.props.click(index)}
-                key={person.id}
-                changed={(event) => this.props.changed(event, person.id)}
+                    name={person.name}
+                    age={person.age}
+                    position={index}
+                    click={() => this.props.click(index)}
+                    key={person.id}
+                    changed={(event) => this.props.changed(event, person.id)}
+                    ref={this.lastPersonRef}
                 />     
         })
     }

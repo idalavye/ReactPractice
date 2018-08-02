@@ -2,6 +2,10 @@ import React, { PureComponent } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
+import Aux from '../hoc/Aux';
+import withClass from '../hoc/WithClasses2';
+
+export const AuthContext = React.createContext(false);
 
 class App extends PureComponent {
 
@@ -18,7 +22,9 @@ class App extends PureComponent {
         { id: 'asdfa', name: 'Stephanie', age: 26 }
       ],
       otherState: 'some other value',
-      showPersons: false
+      showPersons: false,
+      toggleClicked:0,
+      authenticated:false
     }
 
   }
@@ -96,9 +102,22 @@ class App extends PureComponent {
 
   togglePersonHandler = () => {
     const chagedShow = this.state.showPersons;
-    this.setState({
-      showPersons: !chagedShow
+    
+    //prevState alarak ekleme yapmak daha güvenli bir kullanım sağlar. Çünkü state herhangi bir yerde değiştirilmiş olabilir. 
+    //Bu da hatalı sonuç almamıza neden olabilir.
+    this.setState((prevState,props) => {
+        return{
+           showPersons: !chagedShow,
+           toggleClicked: prevState.toggleClicked + 1
+        }
     })
+
+    /*
+    this.setState({
+      showPersons: !chagedShow,
+      toggleClicked:this.state.toggleClicked + 1
+    })
+    */
   }
 
   deletePersonHandler = (index) => {
@@ -107,6 +126,10 @@ class App extends PureComponent {
     this.setState({
       persons: persons
     })
+  }
+
+  loginHandler = () => {
+     this.setState({authenticated:!this.state.authenticated});
   }
 
   render() {
@@ -125,24 +148,29 @@ class App extends PureComponent {
     }
 
     return (
-      <div className={classes.App}>
-        <button onClick = {() => {this.setState({showPersons:true})}}/>
-        <Cockpit
-          showPersons={this.state.showPersons}
-          persons={this.state.persons}
-          click={this.togglePersonHandler} />
-        {persons}
-
-      </div>
+      <Aux>
+          <button onClick = {() => {this.setState({showPersons:true})}}>Show Persons</button>
+          <Cockpit
+            showPersons={this.state.showPersons}
+            persons={this.state.persons}
+            click={this.togglePersonHandler}
+            login={this.loginHandler} />
+            
+            <AuthContext.Provider value={this.state.authenticated}>
+              {persons}
+            </AuthContext.Provider>
+          
+      </Aux>
     );
-  }
+  } 
 }
 
-export default App;
+export default withClass(App,classes.App);
 
 //
 //npm install --save radium
 //npm run eject => geri dönüşü yoktur.
+//npm install --save prop-types => Proptypes ile validation kontrolleri yapmak için kullandık
 //  
 
 /********************************************************************************
