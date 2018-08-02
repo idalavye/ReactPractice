@@ -46,7 +46,7 @@ class Persons extends Component{
     }
     
     shouldComponentUpdate(nextProps,nextState){
-        console.log('[Update Persons.js] Inside shouldComponentUpdate');
+        console.log('[Update Persons.js] Inside shouldComponentUpdate',nextProps,nextState);
         //Bu metot geriye true veya false bir değer döndürmelidir. True değer döndürürse update işlemi devam edecektir.
         //false değer döndürürse updated işllemi yarıda kesilecektir.
         

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
-import Aux from '../hoc/Aux';
+import Aux from '../hoc/Auxebla';
 import withClass from '../hoc/WithClasses2';
 
 export const AuthContext = React.createContext(false);
@@ -61,6 +61,16 @@ class App extends PureComponent {
     console.log('[Update App.js] Insided componentDidUpdate');
   }
 
+  static getDerivedStateFromProps(nextProps,prevState){
+    console.log('[Update App.js] Insided getDerivedStateFromProps',nextProps,prevState);
+
+    return prevState;
+  }
+
+  //render metodundan sonra didUpdateden önce çağrlır.
+  getSnapshotBeforeUpdate(){
+    console.log('[Update App.js] Insided getSnapshotBeforeUpdate');
+  }
   /*
   state = {
     persons: [

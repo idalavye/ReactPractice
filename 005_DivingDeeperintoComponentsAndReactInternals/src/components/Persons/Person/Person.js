@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import './Person.css';
 import classes from './Person.css';
 import withClasses from '../../../hoc/WithClasses2';
-import Aux from '../../../hoc/Aux';
+import Aux from '../../../hoc/Auxebla';
 import propTypes from 'prop-types';
 import {AuthContext}  from '../../../containers/App';
 
