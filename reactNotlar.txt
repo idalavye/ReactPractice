@@ -17,3 +17,8 @@ Ecma Script 7 le birlikte classlarýn içine constructor tanýmý yapma zorunluluðu 
 
 componentDidMount metodunun içerisinde setState metodunu kesinlikle çaðýrmamalýyýz. Çünkü UI'i tekrar render eder ve verilerimizi kaybetmiþ oluruz.
 Burada servera baðlanma verileri fetch etme gibi iþlemleri gerçekleþtirmeliyiz.
+
+css-loader eject etmemiz bize unique css class names tanýmlamamýza imkan saðlar.
+
+container'da genelde stateful(classlý) componentler bulunur. Componentlerde ise stateless(function) componentler bulunur.
+
