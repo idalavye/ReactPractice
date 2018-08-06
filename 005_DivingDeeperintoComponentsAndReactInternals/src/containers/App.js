@@ -19,7 +19,8 @@ class App extends PureComponent {
       persons: [
         { id: 'asdf', name: 'Max', age: 28 },
         { id: 'ewasdf', name: 'Manu', age: 29 },
-        { id: 'asdfa', name: 'Stephanie', age: 26 }
+        { id: 'asdfa', name: 'Stephanie', age: 26 },
+        { id:'asfdsa',name:'İbrahim',age:45}
       ],
       otherState: 'some other value',
       showPersons: false,
