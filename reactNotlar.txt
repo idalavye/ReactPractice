@@ -22,3 +22,5 @@ css-loader eject etmemiz bize unique css class names tanýmlamamýza imkan saðlar.
 
 container'da genelde stateful(classlý) componentler bulunur. Componentlerde ise stateless(function) componentler bulunur.
 
+hoc = high order components
+

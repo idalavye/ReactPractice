@@ -1,8 +1,13 @@
 import React from 'react';
+import classes from './NavigationItems.css';
+import NavigationItem from './NavigationItem/NavigationItem';
+
+//active={true} demek yerine sadece active diyerekde kullanabiliriz. 
 
 const navigationItems = () => (
-    <ul>
-        <li><a></a></li>   
+    <ul className={classes.NavigationItems}> 
+        <NavigationItem link="/" active>Burger Builder</NavigationItem>
+        <NavigationItem link="/">Checkout</NavigationItem>
     </ul>
 );
 
