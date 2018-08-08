@@ -24,3 +24,10 @@ container'da genelde stateful(classlý) componentler bulunur. Componentlerde ise 
 
 hoc = high order components
 
+RestApi'lerin amaçlarýndan biri sunucu requestlerinin sonucunda response olarak html sayfasý almak yerine JSON verilerini çekerek,
+daha hýzlý bir þekilde sayfanýn render edilmesini saðlamaktýr.
+
+Http Requestleri kullanmak için third party ugulama olan axios kullanabiliriz.
+====>npm install axios --save
+
+Side Effect: Herhangi bir þeyin durumunu deðiþtirmemesi olarak tanýmlanabilir.

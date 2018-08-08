@@ -1,0 +1,2 @@
+Fast Command => Ctrl + K + C / Ctrk + K + U
+Fast Change Tab => Ctrl + P
