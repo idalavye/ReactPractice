@@ -10,19 +10,33 @@ const withErrorHandler = (WrappedComponent, axios) => {
             error:null
         }
 
-        componentDidMount(){
+        /**
+         * Child componentlerimzie data çekerken componentDidMount da veri çekeriz.
+         * Eğer veri çekerken bir hata oluştuğu zaman, bunu yakalamak istersek burada child componentler in 
+         * componentDidMount metodu çalışmadan aşarıdaki interceptorları yerleştirmeliyiz. Bunu yapmak için 
+         * ise render metodundan önce çağrılan componentWillMount kullanmalıyız.
+         */
+
+        componentWillMount(){
 
             //Response ve Request her zaman geriye değer döndürmelidir.
-            axios.interceptors.request.use(req => {
+            this.reqInterceptor = axios.interceptors.request.use(req => {
                 this.setState({error:null});
                 return req;
             });
 
             //Birinci parametre response parametresi
-            axios.interceptors.response.use(res => res,error => {
+            this.resInterceptor = axios.interceptors.response.use(res => res,error => {
                 //Eğer bir error dönerse state'imizdeki error null olmayacaktır.
                 this.setState({error:error});
             });
+        }
+
+        //Componentimizin ömrü bittiği zaman interceptor lerimizi devre dışı bırakıyoruz.
+        componentWillUnmount(){
+            console.log('Will Unmount',this.reqInterceptor,this.resInterceptor);
+            axios.interceptors.request.eject(this.reqInterceptor);
+            axios.interceptors.response.eject(this.resInterceptor);
         }
 
         errorConfirmedHandler = () =>{
