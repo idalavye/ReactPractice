@@ -31,3 +31,5 @@ Http Requestleri kullanmak için third party ugulama olan axios kullanabiliriz.
 ====>npm install axios --save
 
 Side Effect: Herhangi bir þeyin durumunu deðiþtirmemesi olarak tanýmlanabilir.
+
+React sadece bir component oluþturma kütüphanesidir. Biz third party uygulamalr ile tam bir framework'e ulaþabiliriz.
