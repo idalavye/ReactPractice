@@ -33,3 +33,10 @@ Http Requestleri kullanmak için third party ugulama olan axios kullanabiliriz.
 Side Effect: Herhangi bir þeyin durumunu deðiþtirmemesi olarak tanýmlanabilir.
 
 React sadece bir component oluþturma kütüphanesidir. Biz third party uygulamalr ile tam bir framework'e ulaþabiliriz.
+
+Sayfa yenilenrken state'lerimizi kaybedebiliriz. Bu yüzden routimg yaparken Link kullanmalayýz.
+
+Route kullanýrken yönlendirmiþ olduðumuz componente bazý props'lar gönderir. Bunlarý daha düþük seviyedeki componentlere göndermek istersek withRouter kullanabiliriz.
+
+Absolute path : root domainimizin sonuna her zaman eklenen path'dir.
+Relative path : eklediðimiz subfix ler gözükmez.

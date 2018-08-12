@@ -1,2 +1,3 @@
 Fast Command => Ctrl + K + C / Ctrk + K + U
 Fast Change Tab => Ctrl + P
+Dublicate Line => Shift + Alt + Down (Up)
