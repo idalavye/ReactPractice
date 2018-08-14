@@ -1,13 +1,34 @@
 import React, { Component } from 'react';
 // import axios from 'axios';
-import { Route, NavLink, Switch } from 'react-router-dom';
+import { Route, NavLink, Switch, Redirect } from 'react-router-dom';
 
 import './Blog.css';
 import Posts from './Posts/Posts';
-import NewPost from './NewPost/NewPost';
-import FullPost from './FullPost/FullPost';
+//import NewPost from './NewPost/NewPost';
+import asyncComponent from '../../hoc/asyncComponent';
+
+const AsyncNewPost = asyncComponent(() => {
+    /**
+     * Dynamic import syntax,
+     * Aşardki şekilde bir kullanımda AsyncNewMost çağrıldığı zaman NewPost.js dosyası import edilecek.
+     */
+    return import('./NewPost/NewPost');
+    /**
+     * Kodumuz çalışırken NewPost main bundle dosyamıza eklenmez, böylelikle daha düşük boyutta bir kaynak kodumuz olur.
+     * New Post nav itemına tıkladığımız zaman NewPost.js dosyası exstra bir bundle olarak eklenir. Ve ihtiyacımız olduğu
+     * zaman kullanmış oluruz. Bu şekilde tüm kodun aynı anda yüklenmesini kısıtlamış oluruz.
+     */
+})
 
 class Blog extends Component {
+
+    state = {
+        auth: false
+    }
+
+    componentDidMount() {
+        //If unauth : this.props.history.replace('/posts');
+    }
 
     render() {
         return (
@@ -16,7 +37,7 @@ class Blog extends Component {
                     <nav>
                         <ul>
                             <li><NavLink
-                                to="/"
+                                to="/posts"
                                 exact
                                 activeClassName="my-active"
                                 activeStyle={{
@@ -35,10 +56,18 @@ class Blog extends Component {
                 {/* <Route path="/" exact={true} render={() => <h1>Home</h1>}/>
                 <Route path="/" render={() => <h1>Home 2</h1>}/> */}
 
-                <Route path="/" exact component={Posts} />
+
                 <Switch>
-                    <Route path="/new-post" exact component={NewPost} />
-                    <Route path="/:id" exact component={FullPost} />
+                    {this.state.auth ? <Route path="/new-post" exact component={NewPost} /> : null}
+                    <Route path="/posts" component={Posts} />
+                    <Route render={() => {
+                        return (
+                            <h1>Not Found</h1>
+                        );
+                    }} />
+
+                    {/* <Redirect from='/' to="/posts"/> */}
+                    {/* <Route path="/" component={Posts} /> */}
                 </Switch>
             </div>
         );

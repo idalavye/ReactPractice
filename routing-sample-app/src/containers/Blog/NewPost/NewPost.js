@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import {Redirect} from 'react-router-dom';
 
 import './NewPost.css';
 
@@ -7,7 +8,8 @@ class NewPost extends Component {
     state = {
         title: '',
         content: '',
-        author: 'Max'
+        author: 'Max',
+        submitted:false
     }
 
     postDataHandler = () => {
@@ -19,12 +21,30 @@ class NewPost extends Component {
         axios.post('/posts', data)
             .then(response => {
                 console.log(response);
+                
+                this.props.history.push('/posts');
+                //this.props.history.replace('/posts'); //replace tıpkı aşarada kullandığımız yöntem gibi çalışır.
+                
+                //this.setState({submitted:true});
+                /**
+                 * Redirect ile bir sayfaya yönlendirme yaptığımız zaman bir önceki sayfaya geri dönemeyiz. Çünkü redirect 
+                 * mevcut sayfayı değiştirir. bunun yerine history.push metodunu kullanırsak bu bize bir önceki sayfananın 
+                 * üstüne eklemesine imkan sağlamaktadır. Bu şekilde geri tuşuna bastığımız zaman bir önceki sayfaya geri
+                 * dönebiliriz.
+                 */
             });
     }
 
     render () {
+        let redirect = null;
+
+        if(this.state.submitted){
+            redirect = <Redirect to="/posts"/>
+        }
+
         return (
             <div className="NewPost">
+                {redirect}
                 <h1>Add a Post</h1>
                 <label>Title</label>
                 <input type="text" value={this.state.title} onChange={(event) => this.setState({title: event.target.value})} />

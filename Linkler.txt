@@ -8,3 +8,4 @@ Scroll Anmations:
 
 React Routing:
 	npm install --save react-router react-router-dom
+	https://reacttraining.com/react-router/web/api/HashRouter/hashtype-string
