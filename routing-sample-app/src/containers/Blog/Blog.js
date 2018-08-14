@@ -23,7 +23,7 @@ const AsyncNewPost = asyncComponent(() => {
 class Blog extends Component {
 
     state = {
-        auth: false
+        auth: true
     }
 
     componentDidMount() {
@@ -58,7 +58,7 @@ class Blog extends Component {
 
 
                 <Switch>
-                    {this.state.auth ? <Route path="/new-post" exact component={NewPost} /> : null}
+                    {this.state.auth ? <Route path="/new-post" exact component={AsyncNewPost} /> : null}
                     <Route path="/posts" component={Posts} />
                     <Route render={() => {
                         return (
