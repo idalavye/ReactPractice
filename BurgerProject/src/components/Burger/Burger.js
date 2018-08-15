@@ -1,9 +1,14 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
 
 import classes from './Burger.css';
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
 const burger = (props) => {
+    /**
+     * Router'ın bize sağlamış olduğu history ve match gibi metotlara ulaşmak için withrouter kullanabiliriz.
+     */
+    //console.log(props);
 
     /**
      * [...Array(3)] bize 3 elemanlı boş bir array verir.
@@ -35,4 +40,4 @@ const burger = (props) => {
     );
 }
 
-export default burger;
+export default withRouter(burger);
