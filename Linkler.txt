@@ -1,4 +1,4 @@
-https://medium.com/nulogy/how-to-use-css-modules-with-create-react-app-9e44bec2b5c2
+﻿https://medium.com/nulogy/how-to-use-css-modules-with-create-react-app-9e44bec2b5c2
 
 Prop-Types Kullan�mlar�:
 	https://reactjs.org/docs/typechecking-with-proptypes.html
@@ -10,4 +10,8 @@ React Routing:
 	npm install --save react-router react-router-dom
 	https://reacttraining.com/react-router/web/api/HashRouter/hashtype-string
 
-sfgsgs
+Validation:
+	https://validatejs.org/
+	https://react.rocks/tag/Validation
+	https://www.npmjs.com/package/react-validation
+	https://github.com/christianalfoni/formsy-react

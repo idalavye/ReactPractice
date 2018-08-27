@@ -25,7 +25,7 @@ class BurgerBuilder extends Component {
         purchasable: false, //satın alınabilirlilik
         purchasing: false, //satın alma
         loading: false,
-        error:false
+        error: false
     }
 
     componentDidMount() {
@@ -34,7 +34,7 @@ class BurgerBuilder extends Component {
                 this.setState({ ingredients: response.data });
             })
             .catch(error => {
-                this.setState({ error:true });
+                this.setState({ error: true });
             });
     }
 
@@ -108,7 +108,7 @@ class BurgerBuilder extends Component {
 
 
         const queryParams = [];
-        for(let i in this.state.ingredients){
+        for (let i in this.state.ingredients) {
             queryParams.push(encodeURIComponent(i) + '=' + encodeURIComponent(this.state.ingredients[i]));
         }
 
@@ -116,8 +116,8 @@ class BurgerBuilder extends Component {
         const queryString = queryParams.join('&');
 
         this.props.history.push({
-            pathname:'/checkout',
-            search:'?' + queryString
+            pathname: '/checkout',
+            search: '?' + queryString
         });
     }
 
@@ -132,7 +132,7 @@ class BurgerBuilder extends Component {
 
         let orderSummary = null;
 
-        let burger = this.state.error ? <p>Not Loading Ingredients..</p>: <Spinner />;
+        let burger = this.state.error ? <p>Not Loading Ingredients..</p> : <Spinner />;
 
         if (this.state.ingredients) {
             burger = (
@@ -152,10 +152,10 @@ class BurgerBuilder extends Component {
                 ingredients={this.state.ingredients}
                 purchaseCancelled={this.purchaseCancelHandler}
                 purchaseContinued={this.purchaseContinueHandler}
-                price={this.state.totalPrice}></OrderSummary>;  
+                price={this.state.totalPrice}></OrderSummary>;
         }
 
-        
+
         if (this.state.loading) {
             orderSummary = <Spinner />;
         }
