@@ -1,6 +1,6 @@
 https://medium.com/nulogy/how-to-use-css-modules-with-create-react-app-9e44bec2b5c2
 
-Prop-Types Kullanýmlarý:
+Prop-Types Kullanï¿½mlarï¿½:
 	https://reactjs.org/docs/typechecking-with-proptypes.html
 
 Scroll Anmations:
@@ -9,3 +9,5 @@ Scroll Anmations:
 React Routing:
 	npm install --save react-router react-router-dom
 	https://reacttraining.com/react-router/web/api/HashRouter/hashtype-string
+
+sfgsgs
