@@ -15,3 +15,7 @@ Validation:
 	https://react.rocks/tag/Validation
 	https://www.npmjs.com/package/react-validation
 	https://github.com/christianalfoni/formsy-react
+
+Redux:
+	npm install -save redux
+	npm install --save react-redux
