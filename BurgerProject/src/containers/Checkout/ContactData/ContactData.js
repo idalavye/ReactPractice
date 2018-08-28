@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import axios from '../../../axios-orders';
 import Spinner from '../../../components/UI/Spinner/Spinner';
@@ -117,7 +118,7 @@ class ContactData extends Component {
         });
 
         const order = {
-            ingrediants: this.props.ingredients,
+            ingrediants: this.props.ings,
             price: this.props.price,
             orderData: formData
         }
@@ -145,7 +146,7 @@ class ContactData extends Component {
             if (rules.required) {
                 isValid = value.trim() !== '' && isValid;
             }
-
+            
             //Sample valid
             if (rules.minLength) {
                 isValid = value.length >= rules.minLength && isValid;
@@ -226,4 +227,11 @@ class ContactData extends Component {
     }
 }
 
-export default ContactData;
+const mapStateToProps = state => {
+    return {
+        ings: state.ingrediants,
+        price: state.totalPrice
+    }
+}
+
+export default connect(mapStateToProps)(ContactData);
