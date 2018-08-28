@@ -1,4 +1,4 @@
-import * as actionTypes from '../actions';
+import * as actionTypes from '../actions/actionsTypes';
 
 const initialState = {
     results: []
@@ -8,6 +8,7 @@ const reducer = (state = initialState, action) => {
 
     switch (action.type) {
         case actionTypes.STORE_RESULT:
+            //change date 
             return {
                 ...state,
                 //@concat

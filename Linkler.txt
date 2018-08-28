@@ -20,3 +20,4 @@ Redux:
 	npm install -save redux
 	npm install --save react-redux
 	https://redux.js.org/recipes/structuringreducers/immutableupdatepatterns
+	npm install --save redux-thunk

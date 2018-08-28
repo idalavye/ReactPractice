@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, combineReducers, applyMiddleware,compose } from 'redux';
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 
 import './index.css';
 import App from './App';
@@ -25,9 +26,16 @@ const logger = store => {
     }
 }
 
+
+
+/**
+ * Thunk, bir eylemin gönderilmesini geciktirmek veya belirli bir koşul yerine getirildiğinde göndermek için kullanılabilir.
+ * I said that middleware runs between the dispatching of an action and the point of time the action reaches the reducer
+ */
+
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger)));
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(logger,thunk)));
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));
 registerServiceWorker();
