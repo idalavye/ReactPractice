@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import axios from '../../../axios-orders';
+//import axios from '../../../axios-orders';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Button from '../../../components/UI/Button/Button';
 import classes from './ContactData.css';
@@ -123,21 +123,21 @@ class ContactData extends Component {
             orderData: formData
         }
 
-        axios.post('/orders.json', order)
-            .then(response => {
-                console.log(response);
-                this.setState({
-                    loading: false
-                });
+        // axios.post('/orders.json', order)
+        //     .then(response => {
+        //         console.log(response);
+        //         this.setState({
+        //             loading: false
+        //         });
 
-                this.props.history.push('/');
-            })
-            .catch(error => {
-                console.log(error);
-                this.setState({
-                    loading: false
-                });
-            });
+        //         this.props.history.push('/');
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+        //         this.setState({
+        //             loading: false
+        //         });
+        //     });
     }
 
     checkValidity(value, rules) {
