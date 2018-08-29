@@ -21,3 +21,9 @@ Redux:
 	npm install --save react-redux
 	https://redux.js.org/recipes/structuringreducers/immutableupdatepatterns
 	npm install --save redux-thunk
+	https://redux.js.org/advanced/asyncactions
+	http://redux.js.org/docs/advanced/Middleware.html
+	https://github.com/reduxjs/redux-thunk
+
+VSCODE:
+	Bracket Pair Colorizer

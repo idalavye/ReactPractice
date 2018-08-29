@@ -40,3 +40,5 @@ Route kullanýrken yönlendirmiþ olduðumuz componente bazý props'lar gönderir. Bun
 
 Absolute path : root domainimizin sonuna her zaman eklenen path'dir.
 Relative path : eklediðimiz subfix ler gözükmez.
+
+Redux-thunk ve action creator kullanarak asyncronize code yazabiliriz.
