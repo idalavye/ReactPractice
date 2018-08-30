@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-//import axios from '../../../axios-orders';
+import axios from '../../../axios-orders';
 import Spinner from '../../../components/UI/Spinner/Spinner';
 import Button from '../../../components/UI/Button/Button';
 import classes from './ContactData.css';
 import Input from '../../../components/UI/Input/Input';
+import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
+import * as actions from '../../../store/actions/index';
 
 class ContactData extends Component {
     state = {
@@ -85,12 +87,12 @@ class ContactData extends Component {
                         { value: 'cheapest', displayValue: 'Cheapest' }
                     ]
                 },
-                value: '',
+                value: 'fastest',
+                validation:{},
                 valid: true
             } //delivery=teslim
         },
-        formIsValid: false,
-        loading: false
+        formIsValid: false
     }
 
     orderHandler = (event) => {
@@ -113,16 +115,16 @@ class ContactData extends Component {
 
         //console.log(formData); //[name: "sf", street: "gsfg", zipCode: "sfg", country: "sfdg", email: "sdfg@sfg.vdf", …]
 
-        this.setState({
-            loading: true
-        });
 
         const order = {
             ingrediants: this.props.ings,
             price: this.props.price,
-            orderData: formData
+            orderData: {...formData}
         }
 
+        this.props.onOrderBurger(order);
+
+        // Aşağıdakiler redux kullanmadan öncesi
         // axios.post('/orders.json', order)
         //     .then(response => {
         //         console.log(response);
@@ -146,7 +148,7 @@ class ContactData extends Component {
             if (rules.required) {
                 isValid = value.trim() !== '' && isValid;
             }
-            
+
             //Sample valid
             if (rules.minLength) {
                 isValid = value.length >= rules.minLength && isValid;
@@ -187,7 +189,6 @@ class ContactData extends Component {
     }
 
     render() {
-
         const formElementsArray = [];
 
         for (let key in this.state.orderForm) {
@@ -204,17 +205,17 @@ class ContactData extends Component {
                         key={formElement.id}
                         elementType={formElement.config.elementType}
                         elementConfig={formElement.config.elementConfig}
+                        shouldValidate={formElement.config.validation} //dropdown vb. componentlerin etkilenmemesi için ekledik
                         value={formElement.config.value}
                         invalid={!formElement.config.valid}
                         touched={formElement.config.touched}
-                        shouldValidate={formElement.config.validation} //dropdown vb. componentlerin etkilenmemesi için ekledik
                         changed={(event) => this.inputChangeHandler(event, formElement.id)} />
                 ))}
                 <Button btnType="Success" disabled={!this.state.formIsValid}>ORDER</Button>
             </form>
         );
 
-        if (this.state.loading) {
+        if (this.props.loading) {
             form = <Spinner />
         }
 
@@ -227,11 +228,18 @@ class ContactData extends Component {
     }
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        onOrderBurger: (orderData) => dispatch(actions.purchaseBurger(orderData))
+    };
+};
+
 const mapStateToProps = state => {
     return {
-        ings: state.ingrediants,
-        price: state.totalPrice
+        ings: state.burgerBuilder.ingredients,
+        price: state.burgerBuilder.totalPrice,
+        loading: state.order.loading
     }
-}
+};
 
-export default connect(mapStateToProps)(ContactData);
+export default connect(mapStateToProps,mapDispatchToProps)(withErrorHandler(ContactData, axios));

@@ -1,65 +1,74 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import Order from '../../components/Order/Order';
 import axios from '../../axios-orders';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import * as actions from '../../store/actions/index';
 
 class Orders extends Component {
 
-    state = {
-        orders: [],
-        loading: true
-    }
-
     componentDidMount() {
-        axios.get('/orders.json')
-            .then(res => {
-                //console.log(res.data);
+        // axios.get('/orders.json')
+        //     .then(res => {
+        //         //console.log(res.data);
 
-                const fetchedOrders = [];
-                /**
-                 * firebase'den gelen unique id'leri kaybetmemek için aşağıdaki şekilde bir yöntem kullandık.
-                 */
-                for (let keys in res.data) {
-                    fetchedOrders.push({
-                        ...res.data[keys],
-                        id:keys
-                    });
-                }
+        //         const fetchedOrders = [];
+        //         /**
+        //          * firebase'den gelen unique id'leri kaybetmemek için aşağıdaki şekilde bir yöntem kullandık.
+        //          */
+        //         for (let keys in res.data) {
+        //             fetchedOrders.push({
+        //                 ...res.data[keys],
+        //                 id:keys
+        //             });
+        //         }
 
-                this.setState({
-                    loading: false,
-                    orders:fetchedOrders
-                });
-            })
-            .catch(err => {
-                this.setState({
-                    loading: false
-                });
-            });
+        //         this.setState({
+        //             loading: false,
+        //             orders:fetchedOrders
+        //         });
+        //     })
+        //     .catch(err => {
+        //         this.setState({
+        //             loading: false
+        //         });
+        //     });
+        this.props.onFetchOrders();
     }
 
     render() {
-        let orders = null;
+        let orders = <Spinner />;
 
-        if(this.state.orders.length === 0){
-            orders= <Spinner />
-        }else{
-            orders = this.state.orders.map(order => (
-                <Order 
+        if (!this.props.loading) {
+            orders = this.props.orders.map(order => (
+                <Order
                     key={order.id}
                     ingredients={order.ingrediants}
-                    price={order.price}/>
+                    price={order.price} />
             ));
         }
 
         return (
             <div>
-                {orders}           
+                {orders}
             </div>
         );
     }
 }
 
-export default withErrorHandler(Orders,axios);
+const mapStatetoProps = state => {
+    return {
+        orders: state.order.orders,
+        loading: state.order.loading
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onFetchOrders: () => dispatch(actions.fetchOrders())
+    };
+};
+
+export default connect(mapStatetoProps, mapDispatchToProps)(withErrorHandler(Orders, axios));

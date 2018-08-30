@@ -124,6 +124,12 @@ class BurgerBuilder extends Component {
         });
         */
 
+        /**
+         * Bu init metodu Checkout componentinin willunmount metodunda çağırsaydık, purchased güncellenmeden sayfa render
+         * edilecekti ve Redirect ile doğrudan anasayfaya yönlendirilecekti. 
+         * Javascript asyncron olarak çalıştığı için
+         */
+        this.props.onInitPurchase();
         this.props.history.push('/checkout');
     }
 
@@ -180,9 +186,9 @@ class BurgerBuilder extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        ings: state.ingredients,
-        totalPrice: state.totalPrice,
-        error: state.error
+        ings: state.burgerBuilder.ingredients,
+        totalPrice: state.burgerBuilder.totalPrice,
+        error: state.burgerBuilder.error
     };
 }
 
@@ -190,7 +196,8 @@ const mapDispatchToProps = dispatch => {
     return {
         onIngredientAdded: (ingName) => dispatch(burgerBuilderActions.addIngredient(ingName)),
         onIngredientRemoved: (ingName) => dispatch(burgerBuilderActions.removeIngredient(ingName)),
-        onInitIngredients: () => dispatch(burgerBuilderActions.initIngredients())
+        onInitIngredients: () => dispatch(burgerBuilderActions.initIngredients()),
+        onInitPurchase: () => dispatch(burgerBuilderActions.purchaseInit())
     };
 }
 
