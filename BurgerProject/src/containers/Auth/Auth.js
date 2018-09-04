@@ -5,6 +5,8 @@ import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 import classes from './Auth.css';
 import * as actions from '../../store/actions/index';
+import Spinner from '../../components/UI/Spinner/Spinner';
+import { stat } from 'fs';
 
 class Auth extends Component {
 
@@ -39,7 +41,7 @@ class Auth extends Component {
                 touched: false
             }
         },
-
+        isSignup: true
     }
 
     inputChangeHandler = (event, controlName) => {
@@ -61,8 +63,16 @@ class Auth extends Component {
 
     submitHandler = (event) => {
         event.preventDefault();
-        this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value);
+        this.props.onAuth(this.state.controls.email.value, this.state.controls.password.value, this.state.isSignup);
     }
+
+    switchAuthModehandler = () => {
+        this.setState(prevState => {
+            return {
+                isSignup: !prevState.isSignup
+            };
+        });
+    };
 
     render() {
 
@@ -76,34 +86,58 @@ class Auth extends Component {
         }
 
         let form = (
-            <form onSubmit={this.submitHandler}>
-                {formElementsArray.map(formElement => (
-                    <Input
-                        key={formElement.id}
-                        elementType={formElement.config.elementType}
-                        elementConfig={formElement.config.elementConfig}
-                        //shouldValidate={formElement.config.validation} //dropdown vb. componentlerin etkilenmemesi için ekledik
-                        value={formElement.config.value}
-                        invalid={!formElement.config.valid}
-                        touched={formElement.config.touched}
-                        changed={(event) => this.inputChangeHandler(event, formElement.id)} />
-                ))}
-                <Button btnType="Success">SUBMIT</Button>
-            </form>
+            <div>
+                <form onSubmit={this.submitHandler}>
+                    {formElementsArray.map(formElement => (
+                        <Input
+                            key={formElement.id}
+                            elementType={formElement.config.elementType}
+                            elementConfig={formElement.config.elementConfig}
+                            //shouldValidate={formElement.config.validation} //dropdown vb. componentlerin etkilenmemesi için ekledik
+                            value={formElement.config.value}
+                            invalid={!formElement.config.valid}
+                            touched={formElement.config.touched}
+                            changed={(event) => this.inputChangeHandler(event, formElement.id)} />
+                    ))}
+                    <Button btnType="Success">SUBMIT</Button>
+                </form>
+                <Button
+                    clicked={this.switchAuthModehandler}
+                    btnType="Danger">SWITCH TO {this.state.isSignup ? 'SIGNUP' : 'SIGNIN'}</Button>
+            </div>
         );
+
+        if (this.props.loading) {
+            form = <Spinner />
+        }
+
+        let errorMessage = null;
+        if (this.props.error) {
+            errorMessage = (
+                <p>{this.props.error.message}</p>
+            );
+        }
 
         return (
             <div className={classes.Auth}>
+                {errorMessage}
                 {form}
             </div>
         );
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        loading: state.auth.loading,
+        error: state.auth.error
+    };
+};
+
 const mapDispatchToProps = dispatch => {
     return {
-        onAuth: (email, password) => dispatch(actions.auth(email, password))
+        onAuth: (email, password, isSignUp) => dispatch(actions.auth(email, password, isSignUp))
     };
 }
 
-export default connect(null, mapDispatchToProps)(Auth);
+export default connect(mapStateToProps, mapDispatchToProps)(Auth);

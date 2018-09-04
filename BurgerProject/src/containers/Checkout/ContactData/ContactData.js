@@ -88,7 +88,7 @@ class ContactData extends Component {
                     ]
                 },
                 value: 'fastest',
-                validation:{},
+                validation: {},
                 valid: true
             } //delivery=teslim
         },
@@ -119,10 +119,10 @@ class ContactData extends Component {
         const order = {
             ingrediants: this.props.ings,
             price: this.props.price,
-            orderData: {...formData}
+            orderData: { ...formData }
         }
 
-        this.props.onOrderBurger(order);
+        this.props.onOrderBurger(order, this.props.token);
 
         // Aşağıdakiler redux kullanmadan öncesi
         // axios.post('/orders.json', order)
@@ -230,7 +230,7 @@ class ContactData extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onOrderBurger: (orderData) => dispatch(actions.purchaseBurger(orderData))
+        onOrderBurger: (orderData, token) => dispatch(actions.purchaseBurger(orderData, token))
     };
 };
 
@@ -238,8 +238,9 @@ const mapStateToProps = state => {
     return {
         ings: state.burgerBuilder.ingredients,
         price: state.burgerBuilder.totalPrice,
-        loading: state.order.loading
+        loading: state.order.loading,
+        token: state.auth.token
     }
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(withErrorHandler(ContactData, axios));
+export default connect(mapStateToProps, mapDispatchToProps)(withErrorHandler(ContactData, axios));
