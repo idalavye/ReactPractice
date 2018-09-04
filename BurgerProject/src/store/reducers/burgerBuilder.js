@@ -20,7 +20,7 @@ const addIngredient = (state, action) => {
             * utility kullanarak kodumuzu daha okunur kılabiliriz.
             */
     const updateIngredient = { [action.ingredientName]: state.ingredients[action.ingredientName] + 1 }
-    const updateIngredients = updateObject(state, updateIngredient);
+    const updateIngredients = updateObject(state.ingredients, updateIngredient);
     const updateState = {
         ingredients: updateIngredients,
         totalPrice: state.totalPrice + INGREDIENT_PRICES[action.ingredientName]

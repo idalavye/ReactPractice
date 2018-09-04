@@ -7,7 +7,7 @@ const input = (props) => {
     const inputClasses = [classes.InputElement];
     let validationError = null;
 
-    if(props.invalid && props.shouldValidate && props.touched){
+    if (props.invalid && props.shouldValidate && props.touched) {
         inputClasses.push(classes.Invalid);
         validationError = <p className={classes.ValidationError}>Please enter a valid val</p>
     }
@@ -34,8 +34,8 @@ const input = (props) => {
                     value={props.value}
                     onChange={props.changed}>
                     {props.elementConfig.options.map(option => (
-                        <option 
-                            key={option.value} 
+                        <option
+                            key={option.value}
                             value={option.value}>{option.displayValue}</option>
                     ))}
                 </select>
@@ -44,8 +44,8 @@ const input = (props) => {
             inputElement = <input
                 className={inputClasses.join(' ')}
                 {...props.elementConfig}
-                value={props.value} 
-                onChange={props.changed}/>
+                value={props.value}
+                onChange={props.changed} />
 
 
         //dropdown, spinner , ... elemanlarda alabiliriz.
