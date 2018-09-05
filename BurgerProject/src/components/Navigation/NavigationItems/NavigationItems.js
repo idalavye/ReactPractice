@@ -4,13 +4,15 @@ import NavigationItem from './NavigationItem/NavigationItem';
 
 //active={true} demek yerine sadece active diyerekde kullanabiliriz. 
 
-const navigationItems = () => (
+const navigationItems = (props) => (
     <ul className={classes.NavigationItems}>
 
         <NavigationItem link="/" exact>Burger Builder</NavigationItem>
-        <NavigationItem link="/orders">Orders</NavigationItem>
-        <NavigationItem link="/auth">Authenticate</NavigationItem>
-
+        {props.isAuthenticated ? <NavigationItem link="/orders">Orders</NavigationItem> : null}
+        {!props.isAuthenticated
+            ? <NavigationItem link="/auth">Authenticate</NavigationItem>
+            : <NavigationItem link="/logout">Logout</NavigationItem>
+        }
     </ul>
 );
 

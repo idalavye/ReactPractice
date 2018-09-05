@@ -8,20 +8,20 @@ import Aux from '../../../hoc/Auxable';
 
 const sideDrawer = (props) => {
 
-    let attachedClasses = [classes.SideDrawer,classes.Close];
-    if(props.open){
-        attachedClasses = [classes.SideDrawer,classes.Open]
+    let attachedClasses = [classes.SideDrawer, classes.Close];
+    if (props.open) {
+        attachedClasses = [classes.SideDrawer, classes.Open]
     }
 
     return (
         <Aux>
-            <Backdrop show={props.open} clicked={props.closed}/>
+            <Backdrop show={props.open} clicked={props.closed} />
             <div className={attachedClasses.join(' ')}>
                 <div className={classes.Logo}>
                     <Logo />
                 </div>
                 <nav>
-                    <NavigationItems />
+                    <NavigationItems isAuthenticated={props.isAuth} />
                 </nav>
             </div>
         </Aux>
