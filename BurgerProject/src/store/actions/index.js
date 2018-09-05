@@ -8,9 +8,10 @@ export {
     purchaseBurger,
     purchaseInit,
     fetchOrders
-}from './order';
+} from './order';
 
-export{
+export {
     auth,
-    logout
-}from './auth';
+    logout,
+    setAuthRedirectPath
+} from './auth';
