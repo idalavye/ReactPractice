@@ -53,7 +53,6 @@ class Auth extends Component {
                 touched: true
                 //valid:this.checkValidity(event.target.value,this.state.contols[controlName].validation)
             }
-
         }
 
         this.setState({
