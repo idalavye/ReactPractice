@@ -27,3 +27,6 @@ Redux:
 
 VSCODE:
 	Bracket Pair Colorizer
+
+Testing:
+	npm install --save enzyme react-test-renderer enzyme-adapter-react-16
