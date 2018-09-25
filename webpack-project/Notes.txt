@@ -1,2 +1,8 @@
 html:5
 #root
+
+npm install --save-dev babel-loader babel-core babel-present-react babel-present-env
+babel-loader: webpack'in kullanabilmesi için
+babel-core:
+babel-preset-react: jsx taglarını tanıması için
+babel-preset-env
