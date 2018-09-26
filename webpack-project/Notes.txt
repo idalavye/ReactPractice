@@ -1,8 +1,24 @@
 html:5
 #root
 
+**npm start scripti hariç diğer tüm scriptrler npm run ile başlamalıdır.
+
 npm install --save-dev babel-loader babel-core babel-present-react babel-present-env
 babel-loader: webpack'in kullanabilmesi için
 babel-core:
 babel-preset-react: jsx taglarını tanıması için
 babel-preset-env
+
+
+npm install --save-dev css-loader style-loader
+npm install --save-dev postcss-loader
+npm install --save-dev autoprefixer
+npm install --save-dev url-loader
+npm install --save-dev file-loader
+npm install --save-dev webpack-cli
+npm install --save-dev babel-plugin-syntax-dynamic-import
+npm install --save-dev babel-preset-stage-2
+npm install --save-dev html-webpack-plugin
+npm install --save-dev rimraf
+npm install --save babel-polyfill //eski tarayıcılar için destek
+
