@@ -88,108 +88,91 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./pages/_error.js":
-/*!*************************!*\
-  !*** ./pages/_error.js ***!
-  \*************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! next/link */ "next/link");
-/* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! next/router */ "next/router");
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_2__);
-var _jsxFileName = "C:\\Users\\ibrah\\Projeler\\React\\ReactTutorial\\nextjs-sample-app\\pages\\_error.js";
-
-
-
-
-var errorPage = function errorPage() {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 6
-    },
-    __self: this
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 7
-    },
-    __self: this
-  }, "Oops, something went wrong."), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 8
-    },
-    __self: this
-  }, "Try ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_link__WEBPACK_IMPORTED_MODULE_1___default.a, {
-    href: "/auth",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 8
-    },
-    __self: this
-  }, "going back")));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (errorPage);
-
-/***/ }),
-
 /***/ 0:
-/*!*******************************!*\
-  !*** multi ./pages/_error.js ***!
-  \*******************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(/*! ./pages/_error.js */"./pages/_error.js");
-
-
-/***/ }),
-
-/***/ "next/link":
-/*!****************************!*\
-  !*** external "next/link" ***!
-  \****************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("next/link");
-
-/***/ }),
-
-/***/ "next/router":
-/*!******************************!*\
-  !*** external "next/router" ***!
-  \******************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = require("next/router");
-
-/***/ }),
-
-/***/ "react":
-/*!************************!*\
-  !*** external "react" ***!
-  \************************/
-/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = require("react");
 
+/***/ }),
+
+/***/ 15:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+// EXTERNAL MODULE: external "react"
+var external_react_ = __webpack_require__(0);
+var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_);
+
+// EXTERNAL MODULE: external "styled-jsx/style"
+var style_ = __webpack_require__(3);
+var style_default = /*#__PURE__*/__webpack_require__.n(style_);
+
+// CONCATENATED MODULE: ./components/User.js
+
+
+
+var User_user = function user(props) {
+  return external_react_default.a.createElement("div", {
+    className: "jsx-1255298248"
+  }, external_react_default.a.createElement("h1", {
+    className: "jsx-1255298248"
+  }, props.name), external_react_default.a.createElement("p", {
+    className: "jsx-1255298248"
+  }, "Age : ", props.age), external_react_default.a.createElement(style_default.a, {
+    styleId: "1255298248",
+    css: ["div.jsx-1255298248{border:1px solid #eee;box-shadow:0 2px 3px #ccc;padding:20px;text-align:center;}"]
+  }));
+};
+
+/* harmony default export */ var User = (User_user);
+// CONCATENATED MODULE: ./pages/auth/index.js
+
+
+
+var auth_authIndexPage = function authIndexPage(props) {
+  return external_react_default.a.createElement("div", null, external_react_default.a.createElement("h1", null, "The Auth Index Page - ", props.appName), external_react_default.a.createElement("a", {
+    href: "/"
+  }, "Main"), external_react_default.a.createElement(User, {
+    name: "\u0130brahim",
+    age: "31"
+  }));
+};
+
+auth_authIndexPage.getInitialProps = function (context) {
+  var promise = new Promise(function (resolve, reject) {
+    setTimeout(function () {
+      resolve({
+        appName: "Super App (Auth)"
+      });
+    }, 1000);
+  });
+  return promise;
+};
+
+/* harmony default export */ var auth = __webpack_exports__["default"] = (auth_authIndexPage);
+
+/***/ }),
+
+/***/ 3:
+/***/ (function(module, exports) {
+
+module.exports = require("styled-jsx/style");
+
+/***/ }),
+
+/***/ 6:
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(15);
+
+
 /***/ })
 
 /******/ });
-//# sourceMappingURL=_error.js.map
