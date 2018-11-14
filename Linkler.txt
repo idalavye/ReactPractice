@@ -34,3 +34,11 @@ Testing:
 Webpack:
 	https://webpack.js.org/concepts/
 	https://babeljs.io/
+
+React Animations:
+	https://reactcommunity.org/react-transition-group/
+	https://github.com/chenglou/react-motion
+	https://github.com/react-tools/react-move
+	https://github.com/maisano/react-router-transition
+	https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations
+	https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions
