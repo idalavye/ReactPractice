@@ -19,7 +19,7 @@ const modal = (props) => {
                 enter: '',
                 enterActive: 'ModalOpen',
                 exit: '',
-                exitActive: 'ModelClosed',
+                exitActive: 'ModalClosed',
                 appear: '', //Appear component ilk yüklendiği zaman devreye girer 
                 appearActive: ''
             }}>
