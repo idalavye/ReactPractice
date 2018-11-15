@@ -1,5 +1,4 @@
 import * as actionTypes from './actionTypes';
-import axios from '../../axios-orders';
 
 export const purchaseBurgerSuccess = (id, orderData) => {
     return {
@@ -25,16 +24,10 @@ export const purchaseBurgerStart = () => {
 //Bu bir action creator bir actionType değil. Bu yüzden reducerda buna özel bir case
 //tanımlamadık. Serverdan gelen sonuca göre bir actionType çağırıyoruz.
 export const purchaseBurger = (orderData, token) => {
-    return dispatch => {
-        dispatch(purchaseBurgerStart());
-        axios.post('/orders.json?auth=' + token, orderData)
-            .then(response => {
-                console.log(response.data);
-                dispatch(purchaseBurgerSuccess(response.data.name, orderData));
-            })
-            .catch(error => {
-                dispatch(purchaseBurgerFail(error));
-            });
+    return {
+        type: actionTypes.PURCHASE_BURGER,
+        orderData: orderData,
+        token: token
     }
 }
 
@@ -65,27 +58,9 @@ export const fetchOrderStart = () => {
 };
 
 export const fetchOrders = (token, userId) => {
-    return dispatch => {
-        dispatch(fetchOrderStart());
-        const queryParams = `?auth=${token}&orderBy="userId"&equalTo="${userId}"`;
-        axios.get('/orders.json' + queryParams)
-            .then(res => {
-                //console.log(res.data);
-
-                const fetchedOrders = [];
-                /**
-                 * firebase'den gelen unique id'leri kaybetmemek için aşağıdaki şekilde bir yöntem kullandık.
-                 */
-                for (let keys in res.data) {
-                    fetchedOrders.push({
-                        ...res.data[keys],
-                        id: keys
-                    });
-                }
-                dispatch(fetchOrdersSuccess(fetchedOrders));
-            })
-            .catch(err => {
-                dispatch(fetchOrdersFail(err));
-            });
-    };
+    return {
+        type: actionTypes.FETCH_ORDERS,
+        token: token,
+        userId: userId
+    }
 };

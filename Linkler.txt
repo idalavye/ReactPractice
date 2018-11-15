@@ -42,3 +42,6 @@ React Animations:
 	https://github.com/maisano/react-router-transition
 	https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations
 	https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions
+
+Redux-Saga:
+	https://redux-saga.js.org/docs/introduction/BeginnerTutorial.html
