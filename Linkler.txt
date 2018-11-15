@@ -45,3 +45,7 @@ React Animations:
 
 Redux-Saga:
 	https://redux-saga.js.org/docs/introduction/BeginnerTutorial.html
+
+React Bonus:
+	https://react.rocks/
+	https://www.gatsbyjs.org/
