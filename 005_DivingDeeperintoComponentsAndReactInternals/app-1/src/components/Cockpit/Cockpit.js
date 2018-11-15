@@ -3,17 +3,17 @@ import classes from './Cockpit.css';
 import Aux from '../../hoc/Auxebla';
 
 const cockpit = (props) => {
-    
+
     let btnClass = classes.Button;
-    if(props.showPersons){
-        btnClass = [classes.Red,classes.Button].join(' ');
+    if (props.showPersons) {
+        btnClass = [classes.Red, classes.Button].join(' ');
     }
     const assignedClasses = [];
-    if(props.persons.length <=2){
-      assignedClasses.push(classes.red); //['red']
+    if (props.persons.length <= 2) {
+        assignedClasses.push(classes.red); //['red']
     }
-    if(props.persons.length <=1){
-      assignedClasses.push(classes.bold); //['red','bold']
+    if (props.persons.length <= 1) {
+        assignedClasses.push(classes.bold); //['red','bold']
     }
 
     //AUX gibi extra componentler kullanarak root div elemanı kullanma zorunluluğunu kaldırabiliriz.
@@ -29,4 +29,4 @@ const cockpit = (props) => {
     );
 }
 
-export default cockpit;
+export default React.memo(cockpit);
