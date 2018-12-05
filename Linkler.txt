@@ -49,3 +49,7 @@ Redux-Saga:
 React Bonus:
 	https://react.rocks/
 	https://www.gatsbyjs.org/
+
+React Snippet Extension:
+	rcc => clase base component
+	rsc => react stateless component
