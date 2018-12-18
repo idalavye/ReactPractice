@@ -56,3 +56,4 @@ React Snippet Extension:
 
 React Projects:
 	https://github.com/akiran/react-slick
+	https://www.react-reveal.com/
