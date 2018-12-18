@@ -53,3 +53,6 @@ React Bonus:
 React Snippet Extension:
 	rcc => clase base component
 	rsc => react stateless component
+
+React Projects:
+	https://github.com/akiran/react-slick
