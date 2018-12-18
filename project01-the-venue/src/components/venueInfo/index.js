@@ -48,7 +48,7 @@ const VenueInfo = () => {
                                             Event Location
                                     </div>
                                         <div className="vn_desc">
-                                            Sakarya Üniversitesi Serdivan/SAKARYA
+                                            Kampüs Serdivan/SAKARYA
                                     </div>
                                     </div>
                                 </div>
