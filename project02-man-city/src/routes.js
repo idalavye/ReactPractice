@@ -9,7 +9,7 @@ const Routes = (props) => {
     <div>
       <Layout>
         <Switch>
-          <Route exact component={Home} path="/" />
+          <Route exact component={Home} path="/"/>
         </Switch>
       </Layout>
     </div>
