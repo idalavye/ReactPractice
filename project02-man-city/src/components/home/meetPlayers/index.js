@@ -66,7 +66,7 @@ class MeetPlayers extends Component {
                                     add={{
                                         display: 'inline-block',
                                         marginBottom: '27px',
-                                        border:'1px solid #0e1731'
+                                        border: '1px solid #0e1731'
                                     }}>
                                     Meet them here
                                 </Tag>
