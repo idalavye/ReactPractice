@@ -10,6 +10,7 @@ const todo = props => {
 
     const [todoName, setTodoName] = useState('');
     const [todoList, setTodoList] = useState([]);
+    const [submittedTodo, setSubmittedTodo] = useState(null);
 
     //render cycle tamamlandıktan sonra çağrılacağını garanti eder. Http isteklerini,
     //Ve dom manipulasyon işlemlerini burada yapmalıyız.
@@ -54,7 +55,7 @@ const todo = props => {
 
     useEffect(() => {
         document.addEventListener('mousemove', mouseMoveHandler);
-        
+
         /**
          * Burdaki return tıpkı componenUnMount gibi çalışır. component ölürken arkasında bıraktığı izleri temizleriz.
          * Mesala burada bir eventListener eklemişiz. Bu component yaşadığı sürece çalışır. component öldüğü zaman ise 
@@ -65,16 +66,24 @@ const todo = props => {
         }
     }, []);
 
+    useEffect(() => {
+        if (submittedTodo) {
+            setTodoList(todoList.concat(submittedTodo));
+        }
+    }, [submittedTodo]);
+
     const inputChangeHanler = (event) => {
         setTodoName(event.target.value);
     };
 
     const todoAddHandler = () => {
-        setTodoList(todoList.concat(todoName));
-
         axios.post('https://burger-app-react-431fb.firebaseio.com/todos.json', { name: todoName })
             .then(res => {
-                // console.log(res);
+                setTimeout(() => {
+                    const todoItem = { id: res.data.name, name: todoName }
+                    setTodoList(todoList.concat(todoItem));
+                    setSubmittedTodo(todoItem);
+                }, 3000)
             }).catch(err => {
                 console.log(err);
             });
