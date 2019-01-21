@@ -26,7 +26,11 @@ const todo = props => {
              * Tüm hookar top levelda bulunmalı. Yani metotların içierisinde hook tanımlamamalıyız.
              */
             setTodoList(todos);
-        })
+        });
+
+        return () => {
+            console.log('CleanUp');
+        }
     }, [todoName]);
 
     /**
@@ -42,6 +46,24 @@ const todo = props => {
      * otamatik olarak merge eder. Ama hook kullanırsak tüm stateleri tekrar belitmemiz gerekir.
      */
     // const [todoState, setTodoSate] = useState({ userInput: '', todoList: [] });
+
+
+    const mouseMoveHandler = event => {
+        console.log(event.clientX, event.clientY);
+    }
+
+    useEffect(() => {
+        document.addEventListener('mousemove', mouseMoveHandler);
+        
+        /**
+         * Burdaki return tıpkı componenUnMount gibi çalışır. component ölürken arkasında bıraktığı izleri temizleriz.
+         * Mesala burada bir eventListener eklemişiz. Bu component yaşadığı sürece çalışır. component öldüğü zaman ise 
+         * bu eventlistener ı diğer componentler etkilenmesin diye temizleriz.
+         */
+        return () => {
+            document.removeEventListener('mousemove', mouseMoveHandler);
+        }
+    }, []);
 
     const inputChangeHanler = (event) => {
         setTodoName(event.target.value);
