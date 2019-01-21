@@ -27,7 +27,14 @@ const todo = props => {
              */
             setTodoList(todos);
         })
-    });
+    }, [todoName]);
+
+    /**
+     * useEffect() ikinci paremetre olarak bir array alır. Bu array useEffect()'in her render cycle ında çağrılıp 
+     * sonsuz loopa girmesini engeller. Bu array'a girdiğimiz parametre örneğin yukarıdakı gibi todoName girersek
+     * sadece todoName değiştiği zaman useEffect tekrarlanacak. Eğer arrayi boş bırakırsak sadece ilk render cycle'ında
+     * çalışacak , tıpkı componentDidMount gibi çalışacaktır. Öteki şekilde ise compoenentDidUpdate işlevini yapmaktadır.
+     */
 
     /**
      * Eğer tek bir state kullanmak istersek. Aşağıdaki gibi kullanabiliriz.
