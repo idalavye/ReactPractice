@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer } from 'react';
+import React, { useState, useEffect, useReducer, useRef } from 'react';
 import axios from 'axios';
 
 const todo = props => {
@@ -8,9 +8,10 @@ const todo = props => {
      * için bir fonksiyon sunucak. Böylelikle stateless componentte state kullanabilmiş olduk.
      */
 
-    const [todoName, setTodoName] = useState('');
+    // const [todoName, setTodoName] = useState('');
     // const [todoList, setTodoList] = useState([]);
     // const [submittedTodo, setSubmittedTodo] = useState(null);
+    const todoInputRef = useRef();
 
 
 
@@ -51,7 +52,7 @@ const todo = props => {
         return () => {
             console.log('CleanUp');
         }
-    }, [todoName]);
+    }, []);
 
     /**
      * useEffect() ikinci paremetre olarak bir array alır. Bu array useEffect()'in her render cycle ında çağrılıp 
@@ -92,11 +93,14 @@ const todo = props => {
     //     }
     // }, [submittedTodo]);
 
-    const inputChangeHanler = (event) => {
-        setTodoName(event.target.value);
-    };
+    // const inputChangeHanler = (event) => {
+    //     setTodoName(event.target.value);
+    // };
 
     const todoAddHandler = () => {
+
+        const todoName = todoInputRef.current.value;
+
         axios.post('https://burger-app-react-431fb.firebaseio.com/todos.json', { name: todoName })
             .then(res => {
                 setTimeout(() => {
@@ -122,8 +126,7 @@ const todo = props => {
             <input
                 type="text"
                 placeholder="Todo"
-                onChange={inputChangeHanler}
-                value={todoName} />
+                ref={todoInputRef} />
             <button type="button" onClick={todoAddHandler}>Add</button>
             <ul>
                 {todoList.map(todo => <li key={todo.id} onClick={todoRemoveHandler.bind(this, todo.id)}>{todo.name}</li>)}
