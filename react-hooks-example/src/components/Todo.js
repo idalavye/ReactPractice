@@ -2,6 +2,7 @@ import React, { useState, useEffect, useReducer, useRef, useMemo } from 'react';
 import axios from 'axios';
 
 import List from './List';
+import { useFormInput } from '../hooks/forms';
 
 const todo = props => {
     /**
@@ -15,6 +16,7 @@ const todo = props => {
     // const [todoList, setTodoList] = useState([]);
     // const [submittedTodo, setSubmittedTodo] = useState(null);
     const todoInputRef = useRef();
+    const todoInput = useFormInput();
 
 
 
@@ -110,7 +112,8 @@ const todo = props => {
 
     const todoAddHandler = () => {
 
-        const todoName = todoInputRef.current.value;
+        // const todoName = todoInputRef.current.value;
+        const todoName = todoInput.value;
 
         axios.post('https://burger-app-react-431fb.firebaseio.com/todos.json', { name: todoName })
             .then(res => {
@@ -137,9 +140,11 @@ const todo = props => {
             <input
                 type="text"
                 placeholder="Todo"
-                ref={todoInputRef}
-                onChange={inputValidationHandler}
-                style={{ backgroundColor: inputIsValid ? 'transparent' : 'red' }} />
+                // ref={todoInputRef}
+                // onChange={inputValidationHandler}
+                onChange={todoInput.onChange}
+                value={todoInput.value}
+                style={{ backgroundColor: todoInput.validity === true ? 'transparent' : 'red' }} />
             <button type="button" onClick={todoAddHandler}>Add</button>
             {useMemo(
                 () => (
