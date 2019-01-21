@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import axios from 'axios';
 
 const todo = props => {
@@ -9,8 +9,26 @@ const todo = props => {
      */
 
     const [todoName, setTodoName] = useState('');
-    const [todoList, setTodoList] = useState([]);
+    // const [todoList, setTodoList] = useState([]);
     const [submittedTodo, setSubmittedTodo] = useState(null);
+
+
+
+    const todoListReducer = (state, action) => {
+        switch (action.type) {
+            case 'ADD':
+                return state.concat(action.payload);
+            case 'REMOVE':
+                return state.filter((todo) => todo.id !== action.payload);
+            case 'SET':
+                return action.payload;
+            default:
+                return state;
+        }
+    };
+
+    const [todoList, dispatch] = useReducer(todoListReducer, []/*,{type:'ADD',{}}*/);
+
 
     //render cycle tamamlandıktan sonra çağrılacağını garanti eder. Http isteklerini,
     //Ve dom manipulasyon işlemlerini burada yapmalıyız.
@@ -26,7 +44,8 @@ const todo = props => {
             /**
              * Tüm hookar top levelda bulunmalı. Yani metotların içierisinde hook tanımlamamalıyız.
              */
-            setTodoList(todos);
+            // setTodoList(todos);
+            dispatch({ type: 'SET', payload: todos })
         });
 
         return () => {
@@ -68,7 +87,8 @@ const todo = props => {
 
     useEffect(() => {
         if (submittedTodo) {
-            setTodoList(todoList.concat(submittedTodo));
+            // setTodoList(todoList.concat(submittedTodo));
+            dispatch({ type: 'ADD', payload: submittedTodo });
         }
     }, [submittedTodo]);
 
@@ -81,7 +101,6 @@ const todo = props => {
             .then(res => {
                 setTimeout(() => {
                     const todoItem = { id: res.data.name, name: todoName }
-                    setTodoList(todoList.concat(todoItem));
                     setSubmittedTodo(todoItem);
                 }, 3000)
             }).catch(err => {
