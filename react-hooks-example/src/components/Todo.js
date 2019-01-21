@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, useRef } from 'react';
+import React, { useState, useEffect, useReducer, useRef, useMemo } from 'react';
 import axios from 'axios';
 
 import List from './List';
@@ -141,7 +141,12 @@ const todo = props => {
                 onChange={inputValidationHandler}
                 style={{ backgroundColor: inputIsValid ? 'transparent' : 'red' }} />
             <button type="button" onClick={todoAddHandler}>Add</button>
-            <List items={todoList} onClick={todoRemoveHandler} />
+            {useMemo(
+                () => (
+                    <List items={todoList} onClick={todoRemoveHandler} />
+                ),
+                [todoList]
+            )}
         </React.Fragment>
     );
 };
