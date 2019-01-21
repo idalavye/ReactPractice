@@ -10,7 +10,7 @@ const todo = props => {
 
     const [todoName, setTodoName] = useState('');
     // const [todoList, setTodoList] = useState([]);
-    const [submittedTodo, setSubmittedTodo] = useState(null);
+    // const [submittedTodo, setSubmittedTodo] = useState(null);
 
 
 
@@ -85,12 +85,12 @@ const todo = props => {
         }
     }, []);
 
-    useEffect(() => {
-        if (submittedTodo) {
-            // setTodoList(todoList.concat(submittedTodo));
-            dispatch({ type: 'ADD', payload: submittedTodo });
-        }
-    }, [submittedTodo]);
+    // useEffect(() => {
+    //     if (submittedTodo) {
+    //         // setTodoList(todoList.concat(submittedTodo));
+    //         dispatch({ type: 'ADD', payload: submittedTodo });
+    //     }
+    // }, [submittedTodo]);
 
     const inputChangeHanler = (event) => {
         setTodoName(event.target.value);
@@ -101,12 +101,21 @@ const todo = props => {
             .then(res => {
                 setTimeout(() => {
                     const todoItem = { id: res.data.name, name: todoName }
-                    setSubmittedTodo(todoItem);
+                    dispatch({ type: 'ADD', payload: todoItem });
                 }, 3000)
             }).catch(err => {
                 console.log(err);
             });
     }
+
+    const todoRemoveHandler = (todoId) => {
+        console.log(todoId);
+        axios.delete(`https://burger-app-react-431fb.firebaseio.com/todos/${todoId}.json`)
+            .then(res => {
+                dispatch({ type: 'REMOVE', payload: todoId })
+            })
+            .catch(err => console.log(err));
+    };
 
     return (
         <React.Fragment>
@@ -117,7 +126,7 @@ const todo = props => {
                 value={todoName} />
             <button type="button" onClick={todoAddHandler}>Add</button>
             <ul>
-                {todoList.map(todo => <li key={todo.id}>{todo.name}</li>)}
+                {todoList.map(todo => <li key={todo.id} onClick={todoRemoveHandler.bind(this, todo.id)}>{todo.name}</li>)}
             </ul>
         </React.Fragment>
     );
